@@ -1,0 +1,5 @@
+C:\Hooman\GBC\GAME3121\Week1\Week1\OrgreTemplateV2\x64\Debug\OrgreTemplateV2.exe
+C:\Hooman\GBC\GAME3121\Course Materials\GameEngineDevelopment\OrgreTemplateV2\OrgreTemplateV2\x64\Debug\OrgreTemplateV2.exe
+C:\Users\Maxim\Desktop\GameEngineDevelopment\OrgreTemplateV2\OrgreTemplateV2\x64\Debug\OrgreTemplateV2.exe
+C:\Users\Maxim\Desktop\GameEngineDevelopment\Paddle Game\OrgreTemplateV2\x64\Debug\PaddleGame.exe
+C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\x64\Debug\PaddleGame.exe
