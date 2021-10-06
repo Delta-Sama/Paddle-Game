@@ -18,6 +18,6 @@ private:
     float radius;
     float ballSpeed;
 
-    float xVelocity;
-    float yVelocity;
+    float xDirection;
+    float yDirection;
 };

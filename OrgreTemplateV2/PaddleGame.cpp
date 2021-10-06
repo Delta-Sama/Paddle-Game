@@ -25,6 +25,7 @@ class PaddleGame
 {
 private:
     float paddleSpeed = 10.0f;
+    float ballSpeed = 11.0f;
 
     SceneManager* scnMgr;
     Root* root;
@@ -131,7 +132,7 @@ void PaddleGame::createScene()
     paddle = new Paddle(scnMgr, paddleSpeed, Ogre::Vector2(4, 1));
     paddle->GetPaddleNode()->setPosition(0,-5.0f,0);
 
-    ball = new Ball(scnMgr, paddleSpeed, 1.5f);
+    ball = new Ball(scnMgr, ballSpeed, 0.25f);
     ball->GetBallNode()->setPosition(0, 5.0f, 0);
 
     // -- tutorial section end --
