@@ -1,5 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (OrgreTemplateV2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Paddle.cpp
+  Ball.cpp
 C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\OgreMain\Include\OgreAxisAlignedBox.h(66,17): warning C4251: 'Ogre::AxisAlignedBox::mMinimum': class 'Ogre::Vector<3,Ogre::Real>' needs to have dll-interface to be used by clients of class 'Ogre::AxisAlignedBox'
 C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\OgreMain\Include\OgrePrerequisites.h(254): message : see declaration of 'Ogre::Vector<3,Ogre::Real>'
 C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\OgreMain\Include\OgreAxisAlignedBox.h(67,17): warning C4251: 'Ogre::AxisAlignedBox::mMaximum': class 'Ogre::Vector<3,Ogre::Real>' needs to have dll-interface to be used by clients of class 'Ogre::AxisAlignedBox'
@@ -436,6 +436,6 @@ C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\Components\Bites\Incl
 C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\Components\Bites\Include\OgreApplicationContextBase.h(291): message : see declaration of 'std::vector<OgreBites::NativeWindowPair,std::allocator<OgreBites::NativeWindowPair>>'
 C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\Components\Bites\Include\OgreApplicationContextBase.h(295,27): warning C4251: 'OgreBites::ApplicationContextBase::mInputListeners': class 'std::set<std::pair<uint32_t,OgreBites::InputListener *>,std::less<std::pair<uint32_t,OgreBites::InputListener *>>,std::allocator<std::pair<uint32_t,OgreBites::InputListener *>>>' needs to have dll-interface to be used by clients of class 'OgreBites::ApplicationContextBase'
 C:\Users\Maxim\Desktop\GameEngineDevelopment\ogre-sdk-v2.1\Components\Bites\Include\OgreApplicationContextBase.h(294): message : see declaration of 'std::set<std::pair<uint32_t,OgreBites::InputListener *>,std::less<std::pair<uint32_t,OgreBites::InputListener *>>,std::allocator<std::pair<uint32_t,OgreBites::InputListener *>>>'
-C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\PaddleGame.cpp(109,47): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\PaddleGame.cpp(114,47): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
   OrgreTemplateV2.vcxproj -> C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\x64\Debug\PaddleGame.exe

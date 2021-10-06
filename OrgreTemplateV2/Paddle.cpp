@@ -3,9 +3,10 @@
 #include <iostream>
 #include <algorithm>
 
-Paddle::Paddle(Ogre::SceneManager* sceneManager, float speed)
+Paddle::Paddle(Ogre::SceneManager* sceneManager, float speed, Ogre::Vector2 size)
 {
     this->paddleSpeed = speed;
+    this->paddleSize = size;
 
     GeneratePaddleShape(sceneManager);
 }
@@ -15,7 +16,7 @@ void Paddle::move(const Ogre::Vector3& direction, Ogre::Node::TransformSpace rel
     paddleNode->translate(direction * paddleSpeed, relativeTo);
 }
 
-void Paddle::Update(Ogre::Vector2 ScreenBorders)
+void Paddle::Update(float deltaTime, Ogre::Vector2 ScreenBorders)
 {
 
 

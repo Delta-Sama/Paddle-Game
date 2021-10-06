@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="PaddleGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="Paddle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

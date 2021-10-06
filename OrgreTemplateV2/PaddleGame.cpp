@@ -10,6 +10,8 @@
 #include "OgreInput.h"
 #include "OgreRTShaderSystem.h"
 #include "Paddle.h"
+#include "Ball.h"
+
 #include <iostream>
 
 using namespace Ogre;
@@ -29,6 +31,8 @@ private:
 
 public:
     Paddle* paddle;
+    Ball* ball;
+
     Ogre::Vector2 ScreenBorders;
     Viewport* viewport;
 
@@ -42,6 +46,7 @@ public:
     bool keyPressed(const KeyboardEvent& evt);
     bool keyReleased(const KeyboardEvent& evt);
     void createFrameListener();
+    void clear();
     Ogre::SceneNode* TriangleNode;
 };
 
@@ -58,7 +63,8 @@ public:
     {
         Game->paddle->move(direction * evt.timeSinceLastFrame, Ogre::Node::TransformSpace::TS_WORLD);
 
-        Game->paddle->Update(Game->ScreenBorders);
+        Game->paddle->Update(evt.timeSinceLastFrame,Game->ScreenBorders);
+        Game->ball->Update(evt.timeSinceLastFrame,Game->ScreenBorders);
 
         Game->getRenderWindow()->resize(640, 480);
 
@@ -122,8 +128,11 @@ void PaddleGame::createScene()
     lightNode->setPosition(0, 4, 10);
     //! [lightpos]
 
-    paddle = new Paddle(scnMgr,paddleSpeed);
+    paddle = new Paddle(scnMgr, paddleSpeed, Ogre::Vector2(4, 1));
     paddle->GetPaddleNode()->setPosition(0,-5.0f,0);
+
+    ball = new Ball(scnMgr, paddleSpeed, 1.5f);
+    ball->GetBallNode()->setPosition(0, 5.0f, 0);
 
     // -- tutorial section end --
 }
@@ -193,6 +202,12 @@ void PaddleGame::createFrameListener()
     mRoot->addFrameListener(FrameListener);
 }
 
+void PaddleGame::clear()
+{
+    if (paddle) delete paddle;
+    if (ball) delete ball;
+}
+
 
 int main(int argc, char** argv)
 {
@@ -201,6 +216,7 @@ int main(int argc, char** argv)
         PaddleGame app;
         app.initApp();
         app.getRoot()->startRendering();
+        app.clear();
         app.closeApp();
     }
     catch (const std::exception& e)
