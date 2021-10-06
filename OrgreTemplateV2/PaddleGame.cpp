@@ -38,6 +38,12 @@ public:
     Ogre::Vector2 ScreenBorders;
     Viewport* viewport;
 
+    int score;
+    const int SCORE_FOR_TOUCH = 10;
+
+    int lives;
+    const int MAX_LIVES = 5;
+
 public:
     PaddleGame();
     virtual ~PaddleGame() {}
@@ -49,7 +55,9 @@ public:
     bool keyReleased(const KeyboardEvent& evt);
     void createFrameListener();
     void clear();
-    Ogre::SceneNode* TriangleNode;
+
+    void checkCollisions();
+    void update(float deltaTime);
 };
 
 class ExampleFrameListener : public Ogre::FrameListener
@@ -65,22 +73,9 @@ public:
     {
         Game->paddle->move(direction * evt.timeSinceLastFrame, Ogre::Node::TransformSpace::TS_WORLD);
 
-        Game->paddle->Update(evt.timeSinceLastFrame,Game->ScreenBorders);
-        Game->ball->Update(evt.timeSinceLastFrame,Game->ScreenBorders);
+        Game->update(evt.timeSinceLastFrame);
 
-        // Check collisions
-        CollisionResult result = CollisionManager::CircleAABBCollision(Game->paddle->GetPaddleNode()->getPosition(), Game->paddle->GetPaddleSize(),
-            Game->ball->GetBallNode()->getPosition(), Game->ball->GetRadius());
-        if (result.collided)
-        {
-
-            if (result.normal.y != 0)
-                Game->ball->SetDirY(result.normal.y);
-            else if (result.normal.x != 0)
-                Game->ball->SetDirX(result.normal.x);
-
-            Game->ball->GetBallNode()->translate(result.resolve, Ogre::Node::TS_WORLD);
-        }
+        Game->checkCollisions();
 
         Game->getRenderWindow()->resize(640, 480);
 
@@ -90,7 +85,6 @@ public:
 
 
 PaddleGame::PaddleGame() : ApplicationContext("Paddle Game Dobrivskiy") {}
-
 
 void PaddleGame::setup()
 {
@@ -144,11 +138,12 @@ void PaddleGame::createScene()
     lightNode->setPosition(0, 4, 10);
     //! [lightpos]
 
-    paddle = new Paddle(scnMgr, paddleSpeed, Ogre::Vector3(4, 1, 0));
-    paddle->GetPaddleNode()->setPosition(0,-5.0f,0);
+    paddle = new Paddle(scnMgr, Ogre::Vector3(0, -5.0f, 0), paddleSpeed, Ogre::Vector3(4, 1, 0));
 
-    ball = new Ball(scnMgr, ballSpeed, 0.25f);
-    ball->GetBallNode()->setPosition(0, 5.0f, 0);
+    ball = new Ball(scnMgr, Ogre::Vector3(0, 5.0f, 0), ballSpeed, 0.25f);
+
+    score = 0;
+    lives = MAX_LIVES;
 
     // -- tutorial section end --
 }
@@ -173,6 +168,39 @@ void PaddleGame::createCamera()
     ScreenBorders = Ogre::Vector2(8.5f, 6.2f);
 
     //! [camera]
+}
+
+void PaddleGame::checkCollisions()
+{
+    CollisionResult result = CollisionManager::CircleAABBCollision(paddle->GetPaddleNode()->getPosition(), paddle->GetPaddleSize(),
+        ball->GetBallNode()->getPosition(), ball->GetRadius());
+    if (result.collided)
+    {
+        if (result.normal.y != 0)
+        {
+            score += SCORE_FOR_TOUCH;
+            ball->SetDirY(result.normal.y);
+        }
+        else if (result.normal.x != 0)
+            ball->SetDirX(result.normal.x);
+
+        ball->GetBallNode()->translate(result.resolve, Ogre::Node::TS_WORLD);
+    }
+
+    if (ball->GetBallNode()->getPosition().y - ball->GetRadius() < -ScreenBorders.y)
+    {
+        ball->Reset(ScreenBorders);
+
+        lives -= 1;
+    }
+
+}
+
+void PaddleGame::update(float deltaTime)
+{
+    paddle->Update(deltaTime, ScreenBorders);
+    ball->Update(deltaTime, ScreenBorders);
+
 }
 
 bool PaddleGame::keyPressed(const KeyboardEvent& evt)

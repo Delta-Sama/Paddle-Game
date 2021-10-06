@@ -1,6 +1,8 @@
 #include "Ball.h"
 
-Ball::Ball(Ogre::SceneManager* sceneManager, float speed, float rad)
+#include <iostream>
+
+Ball::Ball(Ogre::SceneManager* sceneManager, Ogre::Vector3 position, float speed, float rad)
 {
     this->ballSpeed = speed;
     this->radius = rad;
@@ -8,7 +10,11 @@ Ball::Ball(Ogre::SceneManager* sceneManager, float speed, float rad)
     this->xDirection = -1;
     this->yDirection = -1;
 
+    this->defaultPosition = position;
+
     GenerateBallShape(sceneManager);
+
+    ballNode->setPosition(position);
 }
 
 void Ball::Update(float deltaTime, Ogre::Vector2 ScreenBorders)
@@ -27,16 +33,19 @@ void Ball::Update(float deltaTime, Ogre::Vector2 ScreenBorders)
         xDirection = -1;
     }
 
-    if (ballNode->getPosition().y - radius < -ScreenBorders.y)
-    {
-        ballNode->setPosition(Ogre::Vector3(ballNode->getPosition().x, -ScreenBorders.y + radius, 0));
-        yDirection = 1;
-    }
-    else if (ballNode->getPosition().y + radius > ScreenBorders.y)
+    if (ballNode->getPosition().y + radius > ScreenBorders.y)
     {
         ballNode->setPosition(Ogre::Vector3(ballNode->getPosition().x, ScreenBorders.y - radius, 0));
         yDirection = -1;
     }
+}
+
+void Ball::Reset(Ogre::Vector2 ScreenBorders)
+{
+    this->xDirection = 1 - 2 * (rand() % 2);
+    this->yDirection = -1;
+
+    ballNode->setPosition(Ogre::Vector3(-ScreenBorders.x + ScreenBorders.x * 2 * (rand() % 100) / 100.0f, defaultPosition.y, 0));
 }
 
 Ogre::ManualObject* Ball::GenerateBallShape(Ogre::SceneManager* sceneManager)

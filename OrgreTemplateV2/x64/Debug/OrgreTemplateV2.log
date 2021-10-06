@@ -403,5 +403,5 @@ C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\CollisionManager.h(41,42): wa
           [
               T=Ogre::Real
           ]
-C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\PaddleGame.cpp(132,47): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\PaddleGame.cpp(125,47): warning C4305: 'argument': truncation from 'double' to 'float'
   OrgreTemplateV2.vcxproj -> C:\Users\Maxim\Desktop\Paddle Game\OrgreTemplateV2\x64\Debug\PaddleGame.exe

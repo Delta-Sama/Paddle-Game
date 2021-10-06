@@ -5,7 +5,7 @@
 class Paddle
 {
 public:
-    Paddle(Ogre::SceneManager* sceneManager, float speed, Ogre::Vector3 size);
+    Paddle(Ogre::SceneManager* sceneManager, Ogre::Vector3 position, float speed, Ogre::Vector3 size);
 
     void move(const Ogre::Vector3& direction, Ogre::Node::TransformSpace relativeTo = Ogre::Node::TransformSpace::TS_PARENT);
 	
@@ -20,4 +20,6 @@ private:
     Ogre::SceneNode* paddleNode;
     Ogre::Vector3 paddleSize;
     float paddleSpeed;
+
+    Ogre::Vector3 defaultPosition;
 };
