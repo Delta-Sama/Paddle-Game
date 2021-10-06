@@ -15,28 +15,9 @@
 using namespace Ogre;
 using namespace OgreBites;
 
-Ogre::Vector3 translate(0, 0, 0);
+Ogre::Vector3 direction(0, 0, 0);
 
-class ExampleFrameListener : public Ogre::FrameListener
-{
-private:
-    Paddle* paddle;
-public:
-
-    ExampleFrameListener(Paddle* p)
-    {
-        paddle = p;
-    }
-
-    bool frameStarted(const Ogre::FrameEvent& evt)
-    {
-        paddle->move(translate * evt.timeSinceLastFrame, Ogre::Node::TransformSpace::TS_WORLD);
-
-        return true;
-    }
-};
-
-class OgreTutorial
+class PaddleGame
     : public ApplicationContext
     , public InputListener
 {
@@ -46,11 +27,14 @@ private:
     SceneManager* scnMgr;
     Root* root;
 
+public:
     Paddle* paddle;
+    Ogre::Vector2 ScreenBorders;
+    Viewport* viewport;
 
 public:
-    OgreTutorial();
-    virtual ~OgreTutorial() {}
+    PaddleGame();
+    virtual ~PaddleGame() {}
 
     void setup();
     void createScene();
@@ -61,14 +45,32 @@ public:
     Ogre::SceneNode* TriangleNode;
 };
 
-
-OgreTutorial::OgreTutorial()
-    : ApplicationContext("Paddle Game Dobrivskiy")
+class ExampleFrameListener : public Ogre::FrameListener
 {
-}
+private:
+    PaddleGame* Game;
+
+public:
+
+    ExampleFrameListener(PaddleGame* mainGame) : Game(mainGame) {}
+
+    bool frameStarted(const Ogre::FrameEvent& evt)
+    {
+        Game->paddle->move(direction * evt.timeSinceLastFrame, Ogre::Node::TransformSpace::TS_WORLD);
+
+        Game->paddle->Update(Game->ScreenBorders);
+
+        Game->getRenderWindow()->resize(640, 480);
+
+        return true;
+    }
+};
 
 
-void OgreTutorial::setup()
+PaddleGame::PaddleGame() : ApplicationContext("Paddle Game Dobrivskiy") {}
+
+
+void PaddleGame::setup()
 {
     // do not forget to call the base first
     ApplicationContext::setup();
@@ -87,7 +89,7 @@ void OgreTutorial::setup()
     createFrameListener();
 }
 
-void OgreTutorial::createScene()
+void PaddleGame::createScene()
 {
 
     // -- tutorial section start --
@@ -113,23 +115,20 @@ void OgreTutorial::createScene()
     lightNode->attachObject(light1);
     lightNode->setScale(0.01f, 0.01f, 0.01f);
 
-
     scnMgr->getRootSceneNode()->addChild(lightNode);
     //! [newlight]
-
-
 
     //! [lightpos]
     lightNode->setPosition(0, 4, 10);
     //! [lightpos]
 
     paddle = new Paddle(scnMgr,paddleSpeed);
-
+    paddle->GetPaddleNode()->setPosition(0,-5.0f,0);
 
     // -- tutorial section end --
 }
 
-void OgreTutorial::createCamera()
+void PaddleGame::createCamera()
 {
 
     //! [camera]
@@ -144,12 +143,14 @@ void OgreTutorial::createCamera()
     camNode->lookAt(Ogre::Vector3(0, 0, 0), Node::TS_WORLD);
 
     // and tell it to render into the main window
-    getRenderWindow()->addViewport(cam);
+    viewport = getRenderWindow()->addViewport(cam);
+
+    ScreenBorders = Ogre::Vector2(8.5f, 6.2f);
 
     //! [camera]
 }
 
-bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
+bool PaddleGame::keyPressed(const KeyboardEvent& evt)
 {
     switch (evt.keysym.sym)
     {
@@ -157,12 +158,10 @@ bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
         getRoot()->queueEndRendering();
         break;
     case 'a':
-        translate = Ogre::Vector3(-10, 0, 0);
-        std::cout << "A" << std::endl;
+        direction = Ogre::Vector3(-1, 0, 0);
         break;
     case 'd':
-        translate = Ogre::Vector3(10, 0, 0);
-        std::cout << "D" << std::endl;
+        direction = Ogre::Vector3(1, 0, 0);
         break;
     default:
         break;
@@ -170,17 +169,17 @@ bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
     return true;
 }
 
-bool OgreTutorial::keyReleased(const KeyboardEvent& evt)
+bool PaddleGame::keyReleased(const KeyboardEvent& evt)
 {
     switch (evt.keysym.sym)
     {
     case 'a':
-        if (translate.x < 0)
-            translate = Ogre::Vector3(0, 0, 0);
+        if (direction.x < 0)
+            direction = Ogre::Vector3(0, 0, 0);
         break;
     case 'd':
-        if (translate.x > 0)
-            translate = Ogre::Vector3(0, 0, 0);
+        if (direction.x > 0)
+            direction = Ogre::Vector3(0, 0, 0);
         break;
     default:
         break;
@@ -188,9 +187,9 @@ bool OgreTutorial::keyReleased(const KeyboardEvent& evt)
     return true;
 }
 
-void OgreTutorial::createFrameListener()
+void PaddleGame::createFrameListener()
 {
-    Ogre::FrameListener* FrameListener = new ExampleFrameListener(paddle);
+    Ogre::FrameListener* FrameListener = new ExampleFrameListener(this);
     mRoot->addFrameListener(FrameListener);
 }
 
@@ -199,7 +198,7 @@ int main(int argc, char** argv)
 {
     try
     {
-        OgreTutorial app;
+        PaddleGame app;
         app.initApp();
         app.getRoot()->startRendering();
         app.closeApp();
