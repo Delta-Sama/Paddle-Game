@@ -28,6 +28,11 @@ void Paddle::Update(float deltaTime, Ogre::Vector2 ScreenBorders)
         paddleNode->setPosition(Ogre::Vector3(ScreenBorders.x - paddleSize.x / 2, paddleNode->getPosition().y, 0));
 }
 
+void Paddle::Reset()
+{
+    paddleNode->setPosition(defaultPosition);
+}
+
 Ogre::ManualObject* Paddle::GeneratePaddleShape(Ogre::SceneManager* sceneManager)
 {
     Ogre::ManualObject* ManualObject = NULL;

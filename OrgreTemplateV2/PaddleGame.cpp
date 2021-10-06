@@ -9,11 +9,13 @@
 #include "OgreApplicationContext.h"
 #include "OgreInput.h"
 #include "OgreRTShaderSystem.h"
+#include "OgreTrays.h"
 #include "CollisionManager.h"
 #include "Paddle.h"
 #include "Ball.h"
 
 #include <iostream>
+#include <string>
 
 using namespace Ogre;
 using namespace OgreBites;
@@ -25,8 +27,8 @@ class PaddleGame
     , public InputListener
 {
 private:
-    float paddleSpeed = 10.0f;
-    float ballSpeed = 11.0f;
+    float paddleSpeed = 11.0f;
+    float ballSpeed = 8.0f;
 
     SceneManager* scnMgr;
     Root* root;
@@ -37,6 +39,11 @@ public:
 
     Ogre::Vector2 ScreenBorders;
     Viewport* viewport;
+
+    OgreBites::Label* mScoreTextLabel;
+    OgreBites::Label* mScoreLabel;
+    OgreBites::Label* mLivesTextLabel;
+    OgreBites::Label* mLivesLabel;
 
     int score;
     const int SCORE_FOR_TOUCH = 10;
@@ -58,6 +65,8 @@ public:
 
     void checkCollisions();
     void update(float deltaTime);
+    void updateHUD();
+    void reset();
 };
 
 class ExampleFrameListener : public Ogre::FrameListener
@@ -76,6 +85,8 @@ public:
         Game->update(evt.timeSinceLastFrame);
 
         Game->checkCollisions();
+
+        Game->updateHUD();
 
         Game->getRenderWindow()->resize(640, 480);
 
@@ -138,9 +149,18 @@ void PaddleGame::createScene()
     lightNode->setPosition(0, 4, 10);
     //! [lightpos]
 
-    paddle = new Paddle(scnMgr, Ogre::Vector3(0, -5.0f, 0), paddleSpeed, Ogre::Vector3(4, 1, 0));
+    paddle = new Paddle(scnMgr, Ogre::Vector3(0, -5.25f, 0), paddleSpeed, Ogre::Vector3(2.5f, 0.5f, 0));
+    ball = new Ball(scnMgr, Ogre::Vector3(0, 5.0f, 0), ballSpeed, 0.2f);
 
-    ball = new Ball(scnMgr, Ogre::Vector3(0, 5.0f, 0), ballSpeed, 0.25f);
+    OgreBites::TrayManager* mTrayMgr = new OgreBites::TrayManager("InterfaceName", getRenderWindow());
+    scnMgr->addRenderQueueListener(mOverlaySystem);
+
+    addInputListener(mTrayMgr);
+
+    mScoreTextLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Score", "Score", 120);
+    mScoreLabel = mTrayMgr->createLabel(TL_TOPLEFT, "score", "0", 120);
+    mLivesTextLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Lives", "Lives", 120);
+    mLivesLabel = mTrayMgr->createLabel(TL_TOPLEFT, "lives", "0", 120);
 
     score = 0;
     lives = MAX_LIVES;
@@ -201,6 +221,25 @@ void PaddleGame::update(float deltaTime)
     paddle->Update(deltaTime, ScreenBorders);
     ball->Update(deltaTime, ScreenBorders);
 
+    if (lives < 1)
+    {
+        reset();
+    }
+}
+
+void PaddleGame::updateHUD()
+{
+    mScoreLabel->setCaption(std::to_string(score));
+    mLivesLabel->setCaption(std::to_string(lives));
+}
+
+void PaddleGame::reset()
+{
+    ball->Reset(ScreenBorders);
+    paddle->Reset();
+
+    lives = MAX_LIVES;
+    score = 0;
 }
 
 bool PaddleGame::keyPressed(const KeyboardEvent& evt)
@@ -251,7 +290,6 @@ void PaddleGame::clear()
     if (paddle) delete paddle;
     if (ball) delete ball;
 }
-
 
 int main(int argc, char** argv)
 {

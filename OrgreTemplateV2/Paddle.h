@@ -14,6 +14,8 @@ public:
 
     void Update(float deltaTime, Ogre::Vector2 ScreenBorders);
 
+    void Reset();
+
 private:
     Ogre::ManualObject* GeneratePaddleShape(Ogre::SceneManager* sceneManager);
 
