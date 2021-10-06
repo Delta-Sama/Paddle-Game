@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-Paddle::Paddle(Ogre::SceneManager* sceneManager, float speed, Ogre::Vector2 size)
+Paddle::Paddle(Ogre::SceneManager* sceneManager, float speed, Ogre::Vector3 size)
 {
     this->paddleSpeed = speed;
     this->paddleSize = size;

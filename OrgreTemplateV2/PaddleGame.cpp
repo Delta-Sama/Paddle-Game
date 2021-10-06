@@ -9,6 +9,7 @@
 #include "OgreApplicationContext.h"
 #include "OgreInput.h"
 #include "OgreRTShaderSystem.h"
+#include "CollisionManager.h"
 #include "Paddle.h"
 #include "Ball.h"
 
@@ -66,6 +67,14 @@ public:
 
         Game->paddle->Update(evt.timeSinceLastFrame,Game->ScreenBorders);
         Game->ball->Update(evt.timeSinceLastFrame,Game->ScreenBorders);
+
+        // Check collisions
+        CollisionResult result = CollisionManager::CircleAABBCollision(Game->paddle->GetPaddleNode()->getPosition(), Game->paddle->GetPaddleSize(),
+            Game->ball->GetBallNode()->getPosition(), Game->ball->GetRadius());
+        if (result.collided)
+        {
+            std::cout << "Collided!" << std::endl;
+        }
 
         Game->getRenderWindow()->resize(640, 480);
 
@@ -129,7 +138,7 @@ void PaddleGame::createScene()
     lightNode->setPosition(0, 4, 10);
     //! [lightpos]
 
-    paddle = new Paddle(scnMgr, paddleSpeed, Ogre::Vector2(4, 1));
+    paddle = new Paddle(scnMgr, paddleSpeed, Ogre::Vector3(4, 1, 0));
     paddle->GetPaddleNode()->setPosition(0,-5.0f,0);
 
     ball = new Ball(scnMgr, ballSpeed, 0.25f);
