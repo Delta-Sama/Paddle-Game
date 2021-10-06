@@ -73,10 +73,13 @@ public:
             Game->ball->GetBallNode()->getPosition(), Game->ball->GetRadius());
         if (result.collided)
         {
+
             if (result.normal.y != 0)
                 Game->ball->SetDirY(result.normal.y);
             else if (result.normal.x != 0)
                 Game->ball->SetDirX(result.normal.x);
+
+            Game->ball->GetBallNode()->translate(result.resolve, Ogre::Node::TS_WORLD);
         }
 
         Game->getRenderWindow()->resize(640, 480);

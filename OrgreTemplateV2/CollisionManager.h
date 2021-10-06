@@ -4,10 +4,11 @@
 
 struct CollisionResult
 {
-	CollisionResult(bool collision, Ogre::Vector3 n) : collided(collision), normal(n) {}
+	CollisionResult(bool collision, Ogre::Vector3 n, Ogre::Vector3 r) : collided(collision), normal(n), resolve(r) {}
 
 	bool collided;
 	Ogre::Vector3 normal;
+	Ogre::Vector3 resolve;
 };
 
 class CollisionManager
@@ -26,19 +27,22 @@ public:
 		bool collision = Ogre::Vector3(closestPoint - ballPos).squaredLength() < rad * rad;
 
 		Ogre::Vector3 normal = Ogre::Vector3(0, 0, 0);
+		Ogre::Vector3 resolve = Ogre::Vector3(0, 0, 0);
 		if (collision)
 		{
 			Ogre::Vector3 minDif = Ogre::Vector3(recSize.x / 2 - abs(clamped.x), recSize.y / 2 - abs(clamped.y), 0);
 			if (minDif.x < minDif.y)
 			{
 				normal = Ogre::Vector3((clamped.x < 0 ? -1 : 1), 0, 0);
+				resolve = Ogre::Vector3((rad + recSize.x/2 - abs(dif.x)) * (clamped.x < 0 ? -1 : 1), 0, 0);
 			}
 			else
 			{
 				normal = Ogre::Vector3(0, (clamped.y < 0 ? -1 : 1), 0);
+				resolve = Ogre::Vector3(0, (rad + recSize.y / 2 - abs(dif.y)) * (clamped.y < 0 ? -1 : 1), 0);
 			}
 		}
-		return CollisionResult(collision, normal);
+		return CollisionResult(collision, normal, resolve);
 	}
 
 };
