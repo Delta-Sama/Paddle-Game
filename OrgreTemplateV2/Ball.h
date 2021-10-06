@@ -12,6 +12,9 @@ public:
 
     void Update(float deltaTime, Ogre::Vector2 ScreenBorders);
 
+    void SetDirX(float dir) { xDirection = dir; }
+    void SetDirY(float dir) { yDirection = dir; }
+
 private:
     Ogre::ManualObject* GenerateBallShape(Ogre::SceneManager* sceneManager);
 
