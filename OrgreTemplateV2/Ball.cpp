@@ -53,12 +53,20 @@ Ogre::ManualObject* Ball::GenerateBallShape(Ogre::SceneManager* sceneManager)
     Ogre::ManualObject* ManualObject = NULL;
     ManualObject = sceneManager->createManualObject("Ball");
     ManualObject->setDynamic(false);
-    ManualObject->begin("BaseWhiteNoLighting",
-        Ogre::RenderOperation::OT_TRIANGLE_LIST);
+    ManualObject->begin("CircleMaterial", Ogre::RenderOperation::OT_TRIANGLE_LIST);
+
     ManualObject->position(-radius, -radius, 0);
+    ManualObject->textureCoord(0, 0);
+
     ManualObject->position(radius, -radius, 0);
+    ManualObject->textureCoord(0, 1);
+
     ManualObject->position(radius, radius, 0);
+    ManualObject->textureCoord(1, 1);
+
     ManualObject->position(-radius, radius, 0);
+    ManualObject->textureCoord(1, 0);
+
     ManualObject->triangle(0, 1, 2);
     ManualObject->triangle(0, 2, 3);
     ManualObject->end();

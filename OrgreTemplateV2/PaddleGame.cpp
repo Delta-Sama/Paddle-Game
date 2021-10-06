@@ -45,11 +45,18 @@ public:
     OgreBites::Label* mLivesTextLabel;
     OgreBites::Label* mLivesLabel;
 
+    OgreBites::Label* mFPSTextLabel;
+    OgreBites::Label* mFPSLabel;
+    OgreBites::Label* mDeltaTimeTextLabel;
+    OgreBites::Label* mDeltaTimeLabel;
+
     int score;
     const int SCORE_FOR_TOUCH = 10;
 
     int lives;
     const int MAX_LIVES = 5;
+
+    long int frame = 0;
 
 public:
     PaddleGame();
@@ -65,7 +72,7 @@ public:
 
     void checkCollisions();
     void update(float deltaTime);
-    void updateHUD();
+    void updateHUD(float deltaTime);
     void reset();
 };
 
@@ -86,9 +93,11 @@ public:
 
         Game->checkCollisions();
 
-        Game->updateHUD();
-
+        Game->updateHUD(evt.timeSinceLastFrame);
+        
         Game->getRenderWindow()->resize(640, 480);
+
+        Game->frame += 1;
 
         return true;
     }
@@ -150,9 +159,9 @@ void PaddleGame::createScene()
     //! [lightpos]
 
     paddle = new Paddle(scnMgr, Ogre::Vector3(0, -5.25f, 0), paddleSpeed, Ogre::Vector3(2.5f, 0.5f, 0));
-    ball = new Ball(scnMgr, Ogre::Vector3(0, 5.0f, 0), ballSpeed, 0.2f);
+    ball = new Ball(scnMgr, Ogre::Vector3(0, 5.0f, 0), ballSpeed, 0.3f);
 
-    OgreBites::TrayManager* mTrayMgr = new OgreBites::TrayManager("InterfaceName", getRenderWindow());
+    OgreBites::TrayManager* mTrayMgr = new OgreBites::TrayManager("PaddleGameHUD", getRenderWindow());
     scnMgr->addRenderQueueListener(mOverlaySystem);
 
     addInputListener(mTrayMgr);
@@ -161,6 +170,11 @@ void PaddleGame::createScene()
     mScoreLabel = mTrayMgr->createLabel(TL_TOPLEFT, "score", "0", 120);
     mLivesTextLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Lives", "Lives", 120);
     mLivesLabel = mTrayMgr->createLabel(TL_TOPLEFT, "lives", "0", 120);
+
+    mFPSTextLabel = mTrayMgr->createLabel(TL_TOPRIGHT, "FPS", "FPS", 120);
+    mFPSLabel = mTrayMgr->createLabel(TL_TOPRIGHT, "fps", "0", 120);
+    mDeltaTimeTextLabel = mTrayMgr->createLabel(TL_TOPRIGHT, "DeltaTime", "Delta Time", 120);
+    mDeltaTimeLabel = mTrayMgr->createLabel(TL_TOPRIGHT, "deltaTime", "0", 120);
 
     score = 0;
     lives = MAX_LIVES;
@@ -227,10 +241,19 @@ void PaddleGame::update(float deltaTime)
     }
 }
 
-void PaddleGame::updateHUD()
+void PaddleGame::updateHUD(float deltaTime)
 {
     mScoreLabel->setCaption(std::to_string(score));
     mLivesLabel->setCaption(std::to_string(lives));
+
+    if (frame % 10 == 0)
+    {
+        std::stringstream deltaTimeStream;
+        deltaTimeStream << std::fixed << std::setprecision(3) << deltaTime;
+
+        mFPSLabel->setCaption(std::to_string(static_cast<int>(1 / deltaTime)));
+        mDeltaTimeLabel->setCaption(deltaTimeStream.str());
+    }
 }
 
 void PaddleGame::reset()
