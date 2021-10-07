@@ -1,0 +1,275 @@
+\hypertarget{class_paddle_game}{}\doxysection{Paddle\+Game Class Reference}
+\label{class_paddle_game}\index{PaddleGame@{PaddleGame}}
+Inheritance diagram for Paddle\+Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_paddle_game}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_paddle_game_ad1c0d89f85ba815f8146a8671110e9e2}{Paddle\+Game}} ()
+\item 
+virtual \mbox{\hyperlink{class_paddle_game_aaa233d6b9473295047b98abf1fce7f4d}{$\sim$\+Paddle\+Game}} ()
+\item 
+void \mbox{\hyperlink{class_paddle_game_adaf26a2416509b0b28a59c57affba0b5}{setup}} ()
+\item 
+void \mbox{\hyperlink{class_paddle_game_a74fe4d7d76fff06cb979fe5927896780}{create\+Scene}} ()
+\item 
+void \mbox{\hyperlink{class_paddle_game_a4cecc3f2ac0df4568bf0d521e4eb6f9f}{create\+Camera}} ()
+\item 
+bool \mbox{\hyperlink{class_paddle_game_aa229e2de1c595eab2c3ef2abcd019cb7}{key\+Pressed}} (const Keyboard\+Event \&evt)
+\item 
+bool \mbox{\hyperlink{class_paddle_game_aade4c996f00345af87716d3298d72248}{key\+Released}} (const Keyboard\+Event \&evt)
+\item 
+void \mbox{\hyperlink{class_paddle_game_a6a181bcd6032eaf664f1c5e88747a7db}{create\+Frame\+Listener}} ()
+\item 
+void \mbox{\hyperlink{class_paddle_game_acc27f34cedc5106281b36c8fe39f3a6f}{clear}} ()
+\item 
+void \mbox{\hyperlink{class_paddle_game_af60259851a2a04c7cc8d18752b409959}{check\+Collisions}} ()
+\item 
+void \mbox{\hyperlink{class_paddle_game_a32fe61832f1d354f605531b19136fab0}{update}} (float delta\+Time)
+\item 
+void \mbox{\hyperlink{class_paddle_game_a2b30a10d92e182c43554f3e15122fde9}{update\+HUD}} (float delta\+Time)
+\item 
+void \mbox{\hyperlink{class_paddle_game_ae28c1b1a7a5c7da4e196d89b50c1da0e}{reset}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_paddle}{Paddle}} $\ast$ \mbox{\hyperlink{class_paddle_game_a87e8a6ca2e7dc550e4d98330eecff38a}{paddle}}
+\item 
+\mbox{\hyperlink{class_ball}{Ball}} $\ast$ \mbox{\hyperlink{class_paddle_game_ab237da0b636034c0fcd218eb6ec3b61c}{ball}}
+\item 
+Ogre\+::\+Vector2 \mbox{\hyperlink{class_paddle_game_a68cd3b8e84ef0be9c94931bee5a40607}{Screen\+Borders}}
+\item 
+Viewport $\ast$ \mbox{\hyperlink{class_paddle_game_a78b656bebb37306b79bdc3f39e4fb8dc}{viewport}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_a57b02eb151e7209ed4cf8364e3ced97d}{m\+Score\+Text\+Label}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_afcc70e7970fa507d6ec0f65d04e02e30}{m\+Score\+Label}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_aa679f12d8712d5f8afa9026bd1569c1f}{m\+Lives\+Text\+Label}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_a8d8078f3ef4643079d2f872ec557e74c}{m\+Lives\+Label}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_a7c487c9c87ce5e999f173a6da8c42594}{m\+FPSText\+Label}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_a453da7ddd2667605b2b05abe89e8aa68}{m\+FPSLabel}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_a9aac4f20ad87d123e84164662fd13a8d}{m\+Delta\+Time\+Text\+Label}}
+\item 
+Ogre\+Bites\+::\+Label $\ast$ \mbox{\hyperlink{class_paddle_game_a4bd6eafa9e8c9b73ad96909a98af50ba}{m\+Delta\+Time\+Label}}
+\item 
+int \mbox{\hyperlink{class_paddle_game_a8b88f1301df4ea86882041bf99bd4d56}{score}}
+\item 
+const int \mbox{\hyperlink{class_paddle_game_aa16a82bcff84b2c500eabb9d0bbcc4d0}{SCORE\+\_\+\+FOR\+\_\+\+TOUCH}} = 10
+\item 
+int \mbox{\hyperlink{class_paddle_game_a8a4f25a13575f7ff95f8a3e45e5e1368}{lives}}
+\item 
+const int \mbox{\hyperlink{class_paddle_game_a745e84731deb672d66f832d52bb7f007}{MAX\+\_\+\+LIVES}} = 5
+\item 
+long int \mbox{\hyperlink{class_paddle_game_a6b23d03675010d1eb866f322a9f4ed02}{frame}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_paddle_game_ad1c0d89f85ba815f8146a8671110e9e2}\label{class_paddle_game_ad1c0d89f85ba815f8146a8671110e9e2}} 
+\index{PaddleGame@{PaddleGame}!PaddleGame@{PaddleGame}}
+\index{PaddleGame@{PaddleGame}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{PaddleGame()}{PaddleGame()}}
+{\footnotesize\ttfamily Paddle\+Game\+::\+Paddle\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_aaa233d6b9473295047b98abf1fce7f4d}\label{class_paddle_game_aaa233d6b9473295047b98abf1fce7f4d}} 
+\index{PaddleGame@{PaddleGame}!````~PaddleGame@{$\sim$PaddleGame}}
+\index{````~PaddleGame@{$\sim$PaddleGame}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{$\sim$PaddleGame()}{~PaddleGame()}}
+{\footnotesize\ttfamily virtual Paddle\+Game\+::$\sim$\+Paddle\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_paddle_game_af60259851a2a04c7cc8d18752b409959}\label{class_paddle_game_af60259851a2a04c7cc8d18752b409959}} 
+\index{PaddleGame@{PaddleGame}!checkCollisions@{checkCollisions}}
+\index{checkCollisions@{checkCollisions}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{checkCollisions()}{checkCollisions()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::check\+Collisions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_acc27f34cedc5106281b36c8fe39f3a6f}\label{class_paddle_game_acc27f34cedc5106281b36c8fe39f3a6f}} 
+\index{PaddleGame@{PaddleGame}!clear@{clear}}
+\index{clear@{clear}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_a4cecc3f2ac0df4568bf0d521e4eb6f9f}\label{class_paddle_game_a4cecc3f2ac0df4568bf0d521e4eb6f9f}} 
+\index{PaddleGame@{PaddleGame}!createCamera@{createCamera}}
+\index{createCamera@{createCamera}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{createCamera()}{createCamera()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::create\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{[}camera\mbox{]}
+
+\mbox{[}camera\mbox{]}\mbox{\Hypertarget{class_paddle_game_a6a181bcd6032eaf664f1c5e88747a7db}\label{class_paddle_game_a6a181bcd6032eaf664f1c5e88747a7db}} 
+\index{PaddleGame@{PaddleGame}!createFrameListener@{createFrameListener}}
+\index{createFrameListener@{createFrameListener}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{createFrameListener()}{createFrameListener()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::create\+Frame\+Listener (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_a74fe4d7d76fff06cb979fe5927896780}\label{class_paddle_game_a74fe4d7d76fff06cb979fe5927896780}} 
+\index{PaddleGame@{PaddleGame}!createScene@{createScene}}
+\index{createScene@{createScene}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{createScene()}{createScene()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::create\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{[}turnlights\mbox{]}
+
+\mbox{[}turnlights\mbox{]}
+
+\mbox{[}newlight\mbox{]}
+
+\mbox{[}newlight\mbox{]}
+
+\mbox{[}lightpos\mbox{]}
+
+\mbox{[}lightpos\mbox{]}\mbox{\Hypertarget{class_paddle_game_aa229e2de1c595eab2c3ef2abcd019cb7}\label{class_paddle_game_aa229e2de1c595eab2c3ef2abcd019cb7}} 
+\index{PaddleGame@{PaddleGame}!keyPressed@{keyPressed}}
+\index{keyPressed@{keyPressed}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{keyPressed()}{keyPressed()}}
+{\footnotesize\ttfamily bool Paddle\+Game\+::key\+Pressed (\begin{DoxyParamCaption}\item[{const Keyboard\+Event \&}]{evt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_aade4c996f00345af87716d3298d72248}\label{class_paddle_game_aade4c996f00345af87716d3298d72248}} 
+\index{PaddleGame@{PaddleGame}!keyReleased@{keyReleased}}
+\index{keyReleased@{keyReleased}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{keyReleased()}{keyReleased()}}
+{\footnotesize\ttfamily bool Paddle\+Game\+::key\+Released (\begin{DoxyParamCaption}\item[{const Keyboard\+Event \&}]{evt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_ae28c1b1a7a5c7da4e196d89b50c1da0e}\label{class_paddle_game_ae28c1b1a7a5c7da4e196d89b50c1da0e}} 
+\index{PaddleGame@{PaddleGame}!reset@{reset}}
+\index{reset@{reset}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_adaf26a2416509b0b28a59c57affba0b5}\label{class_paddle_game_adaf26a2416509b0b28a59c57affba0b5}} 
+\index{PaddleGame@{PaddleGame}!setup@{setup}}
+\index{setup@{setup}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_a32fe61832f1d354f605531b19136fab0}\label{class_paddle_game_a32fe61832f1d354f605531b19136fab0}} 
+\index{PaddleGame@{PaddleGame}!update@{update}}
+\index{update@{update}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_paddle_game_a2b30a10d92e182c43554f3e15122fde9}\label{class_paddle_game_a2b30a10d92e182c43554f3e15122fde9}} 
+\index{PaddleGame@{PaddleGame}!updateHUD@{updateHUD}}
+\index{updateHUD@{updateHUD}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{updateHUD()}{updateHUD()}}
+{\footnotesize\ttfamily void Paddle\+Game\+::update\+HUD (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_paddle_game_ab237da0b636034c0fcd218eb6ec3b61c}\label{class_paddle_game_ab237da0b636034c0fcd218eb6ec3b61c}} 
+\index{PaddleGame@{PaddleGame}!ball@{ball}}
+\index{ball@{ball}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{ball}{ball}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_ball}{Ball}}$\ast$ Paddle\+Game\+::ball}
+
+\mbox{\Hypertarget{class_paddle_game_a6b23d03675010d1eb866f322a9f4ed02}\label{class_paddle_game_a6b23d03675010d1eb866f322a9f4ed02}} 
+\index{PaddleGame@{PaddleGame}!frame@{frame}}
+\index{frame@{frame}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily long int Paddle\+Game\+::frame = 0}
+
+\mbox{\Hypertarget{class_paddle_game_a8a4f25a13575f7ff95f8a3e45e5e1368}\label{class_paddle_game_a8a4f25a13575f7ff95f8a3e45e5e1368}} 
+\index{PaddleGame@{PaddleGame}!lives@{lives}}
+\index{lives@{lives}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{lives}{lives}}
+{\footnotesize\ttfamily int Paddle\+Game\+::lives}
+
+\mbox{\Hypertarget{class_paddle_game_a745e84731deb672d66f832d52bb7f007}\label{class_paddle_game_a745e84731deb672d66f832d52bb7f007}} 
+\index{PaddleGame@{PaddleGame}!MAX\_LIVES@{MAX\_LIVES}}
+\index{MAX\_LIVES@{MAX\_LIVES}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{MAX\_LIVES}{MAX\_LIVES}}
+{\footnotesize\ttfamily const int Paddle\+Game\+::\+MAX\+\_\+\+LIVES = 5}
+
+\mbox{\Hypertarget{class_paddle_game_a4bd6eafa9e8c9b73ad96909a98af50ba}\label{class_paddle_game_a4bd6eafa9e8c9b73ad96909a98af50ba}} 
+\index{PaddleGame@{PaddleGame}!mDeltaTimeLabel@{mDeltaTimeLabel}}
+\index{mDeltaTimeLabel@{mDeltaTimeLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mDeltaTimeLabel}{mDeltaTimeLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+Delta\+Time\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_a9aac4f20ad87d123e84164662fd13a8d}\label{class_paddle_game_a9aac4f20ad87d123e84164662fd13a8d}} 
+\index{PaddleGame@{PaddleGame}!mDeltaTimeTextLabel@{mDeltaTimeTextLabel}}
+\index{mDeltaTimeTextLabel@{mDeltaTimeTextLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mDeltaTimeTextLabel}{mDeltaTimeTextLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+Delta\+Time\+Text\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_a453da7ddd2667605b2b05abe89e8aa68}\label{class_paddle_game_a453da7ddd2667605b2b05abe89e8aa68}} 
+\index{PaddleGame@{PaddleGame}!mFPSLabel@{mFPSLabel}}
+\index{mFPSLabel@{mFPSLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mFPSLabel}{mFPSLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+FPSLabel}
+
+\mbox{\Hypertarget{class_paddle_game_a7c487c9c87ce5e999f173a6da8c42594}\label{class_paddle_game_a7c487c9c87ce5e999f173a6da8c42594}} 
+\index{PaddleGame@{PaddleGame}!mFPSTextLabel@{mFPSTextLabel}}
+\index{mFPSTextLabel@{mFPSTextLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mFPSTextLabel}{mFPSTextLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+FPSText\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_a8d8078f3ef4643079d2f872ec557e74c}\label{class_paddle_game_a8d8078f3ef4643079d2f872ec557e74c}} 
+\index{PaddleGame@{PaddleGame}!mLivesLabel@{mLivesLabel}}
+\index{mLivesLabel@{mLivesLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mLivesLabel}{mLivesLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+Lives\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_aa679f12d8712d5f8afa9026bd1569c1f}\label{class_paddle_game_aa679f12d8712d5f8afa9026bd1569c1f}} 
+\index{PaddleGame@{PaddleGame}!mLivesTextLabel@{mLivesTextLabel}}
+\index{mLivesTextLabel@{mLivesTextLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mLivesTextLabel}{mLivesTextLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+Lives\+Text\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_afcc70e7970fa507d6ec0f65d04e02e30}\label{class_paddle_game_afcc70e7970fa507d6ec0f65d04e02e30}} 
+\index{PaddleGame@{PaddleGame}!mScoreLabel@{mScoreLabel}}
+\index{mScoreLabel@{mScoreLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mScoreLabel}{mScoreLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+Score\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_a57b02eb151e7209ed4cf8364e3ced97d}\label{class_paddle_game_a57b02eb151e7209ed4cf8364e3ced97d}} 
+\index{PaddleGame@{PaddleGame}!mScoreTextLabel@{mScoreTextLabel}}
+\index{mScoreTextLabel@{mScoreTextLabel}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{mScoreTextLabel}{mScoreTextLabel}}
+{\footnotesize\ttfamily Ogre\+Bites\+::\+Label$\ast$ Paddle\+Game\+::m\+Score\+Text\+Label}
+
+\mbox{\Hypertarget{class_paddle_game_a87e8a6ca2e7dc550e4d98330eecff38a}\label{class_paddle_game_a87e8a6ca2e7dc550e4d98330eecff38a}} 
+\index{PaddleGame@{PaddleGame}!paddle@{paddle}}
+\index{paddle@{paddle}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{paddle}{paddle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_paddle}{Paddle}}$\ast$ Paddle\+Game\+::paddle}
+
+\mbox{\Hypertarget{class_paddle_game_a8b88f1301df4ea86882041bf99bd4d56}\label{class_paddle_game_a8b88f1301df4ea86882041bf99bd4d56}} 
+\index{PaddleGame@{PaddleGame}!score@{score}}
+\index{score@{score}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily int Paddle\+Game\+::score}
+
+\mbox{\Hypertarget{class_paddle_game_aa16a82bcff84b2c500eabb9d0bbcc4d0}\label{class_paddle_game_aa16a82bcff84b2c500eabb9d0bbcc4d0}} 
+\index{PaddleGame@{PaddleGame}!SCORE\_FOR\_TOUCH@{SCORE\_FOR\_TOUCH}}
+\index{SCORE\_FOR\_TOUCH@{SCORE\_FOR\_TOUCH}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{SCORE\_FOR\_TOUCH}{SCORE\_FOR\_TOUCH}}
+{\footnotesize\ttfamily const int Paddle\+Game\+::\+SCORE\+\_\+\+FOR\+\_\+\+TOUCH = 10}
+
+\mbox{\Hypertarget{class_paddle_game_a68cd3b8e84ef0be9c94931bee5a40607}\label{class_paddle_game_a68cd3b8e84ef0be9c94931bee5a40607}} 
+\index{PaddleGame@{PaddleGame}!ScreenBorders@{ScreenBorders}}
+\index{ScreenBorders@{ScreenBorders}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{ScreenBorders}{ScreenBorders}}
+{\footnotesize\ttfamily Ogre\+::\+Vector2 Paddle\+Game\+::\+Screen\+Borders}
+
+\mbox{\Hypertarget{class_paddle_game_a78b656bebb37306b79bdc3f39e4fb8dc}\label{class_paddle_game_a78b656bebb37306b79bdc3f39e4fb8dc}} 
+\index{PaddleGame@{PaddleGame}!viewport@{viewport}}
+\index{viewport@{viewport}!PaddleGame@{PaddleGame}}
+\doxysubsubsection{\texorpdfstring{viewport}{viewport}}
+{\footnotesize\ttfamily Viewport$\ast$ Paddle\+Game\+::viewport}
+

@@ -1,0 +1,33 @@
+\hypertarget{_paddle_8h_source}{}\doxysection{Paddle.\+h}
+\label{_paddle_8h_source}\index{OrgreTemplateV2/Paddle.h@{OrgreTemplateV2/Paddle.h}}
+\mbox{\hyperlink{_paddle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Ogre.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_paddle}{Paddle}}}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7 \textcolor{keyword}{public}:}
+\DoxyCodeLine{8     \mbox{\hyperlink{class_paddle_a6474271255678e2861154bd7838f77e6}{Paddle}}(Ogre::SceneManager* sceneManager, Ogre::Vector3 position, \textcolor{keywordtype}{float} speed, Ogre::Vector3 size);}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_paddle_a368aad20050907a4386c184b83e39fc7}{move}}(\textcolor{keyword}{const} Ogre::Vector3\& \mbox{\hyperlink{_paddle_game_8cpp_a92f9a55a732811bada2ba80a4162b1a9}{direction}}, Ogre::Node::TransformSpace relativeTo = Ogre::Node::TransformSpace::TS\_PARENT);}
+\DoxyCodeLine{11     }
+\DoxyCodeLine{12     Ogre::SceneNode* \mbox{\hyperlink{class_paddle_a78c9c272805c97173f5de7ad32b46c39}{GetPaddleNode}}() \{ \textcolor{keywordflow}{return} paddleNode; \}}
+\DoxyCodeLine{13     Ogre::Vector3 \mbox{\hyperlink{class_paddle_ab34c696fb270cfa379976ac19febc093}{GetPaddleSize}}() \{ \textcolor{keywordflow}{return} paddleSize; \}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_paddle_af7d2a8a4d229c5102052f17b177f0fd7}{Update}}(\textcolor{keywordtype}{float} deltaTime, Ogre::Vector2 ScreenBorders);}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_paddle_a9e8f3470599c6244ed39a3b29cda904f}{Reset}}();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{private}:}
+\DoxyCodeLine{20     Ogre::ManualObject* GeneratePaddleShape(Ogre::SceneManager* sceneManager);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     Ogre::SceneNode* paddleNode;}
+\DoxyCodeLine{23     Ogre::Vector3 paddleSize;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{float} paddleSpeed;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     Ogre::Vector3 defaultPosition;}
+\DoxyCodeLine{27 \};}
+
+\end{DoxyCode}

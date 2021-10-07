@@ -1,0 +1,54 @@
+\hypertarget{_collision_manager_8h_source}{}\doxysection{Collision\+Manager.\+h}
+\label{_collision_manager_8h_source}\index{OrgreTemplateV2/CollisionManager.h@{OrgreTemplateV2/CollisionManager.h}}
+\mbox{\hyperlink{_collision_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Ogre.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_collision_result}{CollisionResult}}}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7     \mbox{\hyperlink{struct_collision_result_a4ccc94a0c0b7ba91aa792058158e241c}{CollisionResult}}(\textcolor{keywordtype}{bool} collision, Ogre::Vector3 n, Ogre::Vector3 r) : \mbox{\hyperlink{struct_collision_result_a2b8ddf5797d2de07f78eb8fe63ee1754}{collided}}(collision), \mbox{\hyperlink{struct_collision_result_a07ec0478250acea2e4eff5f43d8272b1}{normal}}(n), \mbox{\hyperlink{struct_collision_result_a51f1df26430327fd853488e63faee1a4}{resolve}}(r) \{\}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9     \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_collision_result_a2b8ddf5797d2de07f78eb8fe63ee1754}{collided}};}
+\DoxyCodeLine{10     Ogre::Vector3 \mbox{\hyperlink{struct_collision_result_a07ec0478250acea2e4eff5f43d8272b1}{normal}};}
+\DoxyCodeLine{11     Ogre::Vector3 \mbox{\hyperlink{struct_collision_result_a51f1df26430327fd853488e63faee1a4}{resolve}};}
+\DoxyCodeLine{12 \};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_collision_manager}{CollisionManager}}}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     \textcolor{keyword}{static} \textcolor{keywordtype}{float} \mbox{\hyperlink{class_collision_manager_afbda496cd2bd82529d93d4ff48ee7a9f}{clamp}}(\textcolor{keywordtype}{float} num, \textcolor{keywordtype}{float} min, \textcolor{keywordtype}{float} max)}
+\DoxyCodeLine{18     \{}
+\DoxyCodeLine{19         \textcolor{keywordflow}{return} std::min(std::max(num,min), max);}
+\DoxyCodeLine{20     \}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \textcolor{keyword}{static} \mbox{\hyperlink{struct_collision_result}{CollisionResult}} \mbox{\hyperlink{class_collision_manager_a9d266c32ab6e049f411d7dfc3a9a1bd1}{CircleAABBCollision}}(Ogre::Vector3 recPos, Ogre::Vector3 recSize, Ogre::Vector3 ballPos, \textcolor{keywordtype}{float} rad)}
+\DoxyCodeLine{23     \{}
+\DoxyCodeLine{24         Ogre::Vector3 dif = ballPos -\/ recPos;}
+\DoxyCodeLine{25         Ogre::Vector3 clamped = Ogre::Vector3(\mbox{\hyperlink{class_collision_manager_afbda496cd2bd82529d93d4ff48ee7a9f}{clamp}}(dif.x, -\/recSize.x / 2, recSize.x / 2), \mbox{\hyperlink{class_collision_manager_afbda496cd2bd82529d93d4ff48ee7a9f}{clamp}}(dif.y, -\/recSize.y / 2, recSize.y / 2), 0);}
+\DoxyCodeLine{26         Ogre::Vector3 closestPoint = recPos + clamped;}
+\DoxyCodeLine{27         \textcolor{keywordtype}{bool} collision = Ogre::Vector3(closestPoint -\/ ballPos).squaredLength() < rad * rad;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         Ogre::Vector3 normal = Ogre::Vector3(0, 0, 0);}
+\DoxyCodeLine{30         Ogre::Vector3 resolve = Ogre::Vector3(0, 0, 0);}
+\DoxyCodeLine{31         \textcolor{keywordflow}{if} (collision)}
+\DoxyCodeLine{32         \{}
+\DoxyCodeLine{33             Ogre::Vector3 minDif = Ogre::Vector3(recSize.x / 2 -\/ abs(clamped.x), recSize.y / 2 -\/ abs(clamped.y), 0);}
+\DoxyCodeLine{34             \textcolor{keywordflow}{if} (minDif.x < minDif.y)}
+\DoxyCodeLine{35             \{}
+\DoxyCodeLine{36                 normal = Ogre::Vector3((clamped.x < 0 ? -\/1 : 1), 0, 0);}
+\DoxyCodeLine{37                 resolve = Ogre::Vector3((rad + recSize.x/2 -\/ abs(dif.x)) * (clamped.x < 0 ? -\/1 : 1), 0, 0);}
+\DoxyCodeLine{38             \}}
+\DoxyCodeLine{39             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{40             \{}
+\DoxyCodeLine{41                 normal = Ogre::Vector3(0, (clamped.y < 0 ? -\/1 : 1), 0);}
+\DoxyCodeLine{42                 resolve = Ogre::Vector3(0, (rad + recSize.y / 2 -\/ abs(dif.y)) * (clamped.y < 0 ? -\/1 : 1), 0);}
+\DoxyCodeLine{43             \}}
+\DoxyCodeLine{44         \}}
+\DoxyCodeLine{45         \textcolor{keywordflow}{return} \mbox{\hyperlink{struct_collision_result}{CollisionResult}}(collision, normal, resolve);}
+\DoxyCodeLine{46     \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \};}
+
+\end{DoxyCode}

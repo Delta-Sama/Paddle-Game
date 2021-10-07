@@ -1,0 +1,37 @@
+\hypertarget{_ball_8h_source}{}\doxysection{Ball.\+h}
+\label{_ball_8h_source}\index{OrgreTemplateV2/Ball.h@{OrgreTemplateV2/Ball.h}}
+\mbox{\hyperlink{_ball_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Ogre.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_ball}{Ball}}}
+\DoxyCodeLine{6 \{}
+\DoxyCodeLine{7 \textcolor{keyword}{public}:}
+\DoxyCodeLine{8     \mbox{\hyperlink{class_ball_a97342ba935b670b69d94b2d40c672fa7}{Ball}}(Ogre::SceneManager* sceneManager, Ogre::Vector3 position, \textcolor{keywordtype}{float} speed, \textcolor{keywordtype}{float} rad);}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     Ogre::SceneNode* \mbox{\hyperlink{class_ball_a25c0911d783cde7e2a602318a0c2d59a}{GetBallNode}}() \{ \textcolor{keywordflow}{return} ballNode; \}}
+\DoxyCodeLine{11     \textcolor{keywordtype}{float} \mbox{\hyperlink{class_ball_abc31b1347d291ce28f901909e9843280}{GetRadius}}() \{ \textcolor{keywordflow}{return} radius; \}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ball_af8b77ca9a2e435c480f7198971bea34a}{Update}}(\textcolor{keywordtype}{float} deltaTime, Ogre::Vector2 ScreenBorders);}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ball_a7af1388069fa60089f3ae526331fc311}{SetDirX}}(\textcolor{keywordtype}{float} dir) \{ xDirection = dir; \}}
+\DoxyCodeLine{16     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ball_a7560b32bb8d3a51beb68bde7f5031204}{SetDirY}}(\textcolor{keywordtype}{float} dir) \{ yDirection = dir; \}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_ball_a07d48259da3ee6d60b1e0d754ed45bae}{Reset}}(Ogre::Vector2 ScreenBorders);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{private}:}
+\DoxyCodeLine{21     Ogre::ManualObject* GenerateBallShape(Ogre::SceneManager* sceneManager);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     Ogre::SceneNode* ballNode;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{float} radius;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{float} ballSpeed;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keywordtype}{float} xDirection;}
+\DoxyCodeLine{28     \textcolor{keywordtype}{float} yDirection;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     Ogre::Vector3 defaultPosition;}
+\DoxyCodeLine{31 \};}
+
+\end{DoxyCode}

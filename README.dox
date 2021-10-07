@@ -1,0 +1,9 @@
+/**
+
+@mainpage Assignment1
+
+@author Maxim Dobrivskiy
+
+a simple 2D paddle game for assignment 1 with the paddle moving left and right to prevent the ball reaching the floor
+
+*/
