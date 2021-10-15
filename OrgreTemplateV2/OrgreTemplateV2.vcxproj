@@ -20,13 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="PaddleFrameListener.cpp" />
     <ClCompile Include="PaddleGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Paddle.h" />
+    <ClInclude Include="PaddleFrameListener.h" />
+    <ClInclude Include="PaddleGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

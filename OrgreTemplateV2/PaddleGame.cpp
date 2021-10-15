@@ -1,108 +1,8 @@
-
-//Animation(Rotation) of a simple Quad
-// Rendering operation using vertex buffers
-//  OT_POINT_LIST = 1, OT_LINE_LIST = 2, OT_LINE_STRIP = 3, OT_TRIANGLE_LIST = 4,
-//  OT_TRIANGLE_STRIP = 5, OT_TRIANGLE_FAN = 6,...
-//Hooman Salamat
-
-#include "Ogre.h"
-#include "OgreApplicationContext.h"
-#include "OgreInput.h"
-#include "OgreRTShaderSystem.h"
-#include "OgreTrays.h"
-#include "CollisionManager.h"
-#include "Paddle.h"
-#include "Ball.h"
+#include "PaddleGame.h"
+#include "PaddleFrameListener.h"
 
 #include <iostream>
 #include <string>
-
-using namespace Ogre;
-using namespace OgreBites;
-
-Ogre::Vector3 direction(0, 0, 0);
-
-class PaddleGame
-    : public ApplicationContext
-    , public InputListener
-{
-private:
-    float paddleSpeed = 11.0f;
-    float ballSpeed = 8.0f;
-
-    SceneManager* scnMgr;
-    Root* root;
-
-public:
-    Paddle* paddle;
-    Ball* ball;
-
-    Ogre::Vector2 ScreenBorders;
-    Viewport* viewport;
-
-    OgreBites::Label* mScoreTextLabel;
-    OgreBites::Label* mScoreLabel;
-    OgreBites::Label* mLivesTextLabel;
-    OgreBites::Label* mLivesLabel;
-
-    OgreBites::Label* mFPSTextLabel;
-    OgreBites::Label* mFPSLabel;
-    OgreBites::Label* mDeltaTimeTextLabel;
-    OgreBites::Label* mDeltaTimeLabel;
-
-    int score;
-    const int SCORE_FOR_TOUCH = 10;
-
-    int lives;
-    const int MAX_LIVES = 5;
-
-    long int frame = 0;
-
-public:
-    PaddleGame();
-    virtual ~PaddleGame() {}
-
-    void setup();
-    void createScene();
-    void createCamera();
-    bool keyPressed(const KeyboardEvent& evt);
-    bool keyReleased(const KeyboardEvent& evt);
-    void createFrameListener();
-    void clear();
-
-    void checkCollisions();
-    void update(float deltaTime);
-    void updateHUD(float deltaTime);
-    void reset();
-};
-
-class ExampleFrameListener : public Ogre::FrameListener
-{
-private:
-    PaddleGame* Game;
-
-public:
-
-    ExampleFrameListener(PaddleGame* mainGame) : Game(mainGame) {}
-
-    bool frameStarted(const Ogre::FrameEvent& evt)
-    {
-        Game->paddle->move(direction * evt.timeSinceLastFrame, Ogre::Node::TransformSpace::TS_WORLD);
-
-        Game->update(evt.timeSinceLastFrame);
-
-        Game->checkCollisions();
-
-        Game->updateHUD(evt.timeSinceLastFrame);
-        
-        Game->getRenderWindow()->resize(640, 480);
-
-        Game->frame += 1;
-
-        return true;
-    }
-};
-
 
 PaddleGame::PaddleGame() : ApplicationContext("Paddle Game Dobrivskiy") {}
 
@@ -304,7 +204,9 @@ bool PaddleGame::keyReleased(const KeyboardEvent& evt)
 
 void PaddleGame::createFrameListener()
 {
-    Ogre::FrameListener* FrameListener = new ExampleFrameListener(this);
+    direction = Ogre::Vector3(0, 0, 0);
+
+    Ogre::FrameListener* FrameListener = new PaddleFrameListener(this);
     mRoot->addFrameListener(FrameListener);
 }
 
@@ -313,24 +215,3 @@ void PaddleGame::clear()
     if (paddle) delete paddle;
     if (ball) delete ball;
 }
-
-int main(int argc, char** argv)
-{
-    try
-    {
-        PaddleGame app;
-        app.initApp();
-        app.getRoot()->startRendering();
-        app.clear();
-        app.closeApp();
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Error occurred during execution: " << e.what() << '\n';
-        return 1;
-    }
-
-    return 0;
-}
-
-//! [fullsource]
