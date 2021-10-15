@@ -1,0 +1,13 @@
+material CircleMaterial
+{
+technique
+{
+pass
+{
+texture_unit
+{
+texture RedBall.png
+}
+}
+}
+}
